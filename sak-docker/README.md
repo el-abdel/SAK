@@ -1,5 +1,3 @@
-![wanpa](http://10.141.6.164/public/images/wanpalogoarsguyanehd.png)
-
 # SAK 1.0.0
 
 ### Exigence:
