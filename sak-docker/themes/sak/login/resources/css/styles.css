@@ -1,0 +1,58 @@
+#kc-locale {
+    display: none !important;
+}
+#kc-header{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#kc-logo {
+    width: 100%;
+}
+
+#kc-logo-wrapper {
+    background-image: url(../img/Logo_ars.jpg);
+    background-repeat: no-repeat;
+    height: 196px;
+    width: 335px;
+    margin: 62px auto 0;
+}
+
+div.kc-logo-text {
+    background-image: url(../img/Logo_ars.jpg);
+    background-repeat: no-repeat;
+    height: 196px;
+    width: 335px;
+    margin: 0 auto;
+}
+
+div.kc-logo-text span {
+    display: none;
+}
+
+.card.put-center {
+    margin: 0 auto !important;
+}
+
+.alert-error {
+    color: #7f231c;
+    background-color: #fdd9d7;
+    border-color: #fccac7 !important;
+    margin-top: 15px;
+}
+
+.login-pf-page .login-pf-header h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+#kc-form-options .checkbox label {
+	color: rgba(0, 0, 0, 0.72);
+}
+
+#kc-form-login .form-group {
+	margin-left: 15px !important;
+    margin-right: 15px !important;
+}

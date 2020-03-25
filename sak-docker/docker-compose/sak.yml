@@ -1,0 +1,109 @@
+version: '2.1'
+
+services:
+
+  apache-sak-api:
+    build: ../docker-images
+    image: apache-sak-api:latest
+    container_name: sak-api
+    environment:
+      - VIRTUAL_HOST=sak-api.local
+    volumes:
+      - ../../sak-api:/var/www/html/sak-api
+      - /var/www/html/sak-api/vendor
+      - ../etc/apache2/sites-enabled/sak-api.local.conf:/etc/apache2/sites-enabled/sak-api.local.conf
+      - ../log/apache2/sak-api.local:/var/log/apache2/sak-api.local
+      - ../log/sak-api.local:/tmp/log
+    links:
+      - database-sak
+      - keycloak
+    network_mode: "bridge"
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes_from:
+      - apache-sak-api
+    working_dir: /var/www/html/sak-api
+
+  apache-sak-web:
+    image: httpd:2.4
+    container_name: sak-web
+    environment:
+      - VIRTUAL_HOST=sak-web.local
+    volumes:
+      - ../../sak-web/dist:/var/www/html
+      - ../etc/apache2/sites-enabled/sak-web-httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ../etc/apache2/sites-enabled/sak-web.local.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+      - ../log/apache2/sak-web.local:/var/log/apache2/sak-web.local
+      - ../log/sak-web.local:/tmp/log
+    links:
+      - apache-sak-api
+      - keycloak
+    network_mode: "bridge"
+
+  database-sak:
+    image: mysql:5.7
+    container_name: sak-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=keycloak
+      - MYSQL_USER=keycloak
+      - MYSQL_PASSWORD=password
+    volumes:
+      - ../data/sak:/var/lib/mysql
+    ports:
+      - 3306:3306
+    network_mode: "bridge"
+
+  keycloak:
+    image: jboss/keycloak:6.0.1
+    container_name: keycloak
+    environment:
+      - DB_VENDOR=MYSQL
+      - DB_ADDR=dbase
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=password
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_HOSTNAME=keycloak.local
+    volumes:
+      - ../themes/sak:/opt/jboss/keycloak/themes/sak
+    links:
+      - database-sak:dbase
+    ports:
+      - 8080:8080
+    network_mode: "bridge"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - VIRTUAL_HOST=phpmyadmin.local
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    links:
+      - database-sak:db
+    network_mode: "bridge"
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    environment:
+      - VIRTUAL_HOST=mailhog.local
+    ports: 
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
+    network_mode: "bridge"
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    network_mode: "bridge"
+    volumes:
+      - ../etc/nginx/uploadsize.conf:/etc/nginx/conf.d/uploadsize.conf
+      - /var/run/docker.sock:/tmp/docker.sock:ro

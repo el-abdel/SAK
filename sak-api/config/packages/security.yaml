@@ -1,0 +1,22 @@
+security:
+    providers:
+        in_memory:
+            memory: ~
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        api:
+            pattern: ^/api/
+            guard:
+                authenticators:
+                    - App\Security\Authenticator\KeycloakAuthenticator
+            stateless: true
+        main:
+            anonymous: ~
+    access_control:
+        - { path: ^/api/, roles: ROLE_API }
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
