@@ -1,6 +1,4 @@
-![wanpa](http://10.141.6.164/public/images/wanpalogoarsguyanehd.png)
-
-# WANPA  2.0.0
+# SAK 1.0.0
 
 ### Exigence:
 
@@ -18,15 +16,15 @@
 
   * `cd wanpa2Docker`
 
-  * `docker-compose -f docker-projects/docker-compose/wanpa.yml up`
+  * `docker-compose -f docker-projects/docker-compose/sak.yml up`
 
   * Exécuter en mode détaché (optionnel):
 
-    * `docker-compose -f docker-projects/docker-compose/wanpa.yml up -d`
+    * `docker-compose -f docker-projects/docker-compose/sak.yml up -d`
 
   * Configurer le fichier hostes pour ajouter les vhosts suivant:
 
-    * `127.0.0.1 wanpa-api.local wanpa-web.local phpmyadmin.local`
+    * `127.0.0.1 wanpa-api.local sak-web.local phpmyadmin.local`
 
 ### Configuration API:
 
@@ -34,7 +32,7 @@
 
   * `cd docker-projetcs/docker-compose/`
 
-  * `docker-compose -f wanpa.yml run --rm composer install --ignore-platform-reqs`
+  * `docker-compose -f sak.yml run --rm composer install --ignore-platform-reqs`
 
 * Dans un navigateur web accéder à l'api via http://wanpa-api.local
 
@@ -48,7 +46,7 @@
 
 2. List item:
 
-   * `cd wanpa-web/`
+   * `cd sak-web/`
 
    * `npm install`
 
