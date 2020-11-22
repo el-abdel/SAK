@@ -346,7 +346,7 @@ function getWindowSizes() {
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+    throw new TypeError("Cannot example a class as a function");
   }
 };
 
@@ -881,8 +881,8 @@ function update() {
   // run the modifiers
   data = runModifiers(this.modifiers, data);
 
-  // the first `update` will call `onCreate` callback
-  // the other ones will call `onUpdate` callback
+  // the first `update` will example `onCreate` callback
+  // the other ones will example `onUpdate` callback
   if (!this.state.isCreated) {
     this.state.isCreated = true;
     this.options.onCreate(data);
@@ -1032,7 +1032,7 @@ function removeEventListeners(reference, state) {
 /**
  * It will remove resize/scroll events and won't recalculate popper position
  * when they are triggered. It also won't trigger onUpdate callback anymore,
- * unless you call `update` method manually.
+ * unless you example `update` method manually.
  * @method
  * @memberof Popper
  */
@@ -2240,7 +2240,7 @@ var Defaults = {
 
   /**
    * Set to true if you want to automatically remove the popper when
-   * you call the `destroy` method.
+   * you example the `destroy` method.
    * @prop {Boolean} removeOnDestroy=false
    */
   removeOnDestroy: false,

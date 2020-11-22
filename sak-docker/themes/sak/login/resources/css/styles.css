@@ -11,7 +11,7 @@
 }
 
 #kc-logo-wrapper {
-    background-image: url(../img/Logo_ars.jpg);
+    background-image: url(../img/logo.png);
     background-repeat: no-repeat;
     height: 196px;
     width: 335px;
@@ -19,7 +19,7 @@
 }
 
 div.kc-logo-text {
-    background-image: url(../img/Logo_ars.jpg);
+    background-image: url(../img/logo.png);
     background-repeat: no-repeat;
     height: 196px;
     width: 335px;
