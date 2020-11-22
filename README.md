@@ -63,8 +63,11 @@ You can visit your Angular application on the following URL: [http://localhost:4
 
 #### Configuring Keycloak
 
-Todo
+After building and running your containers, visit keycloak admin console on this URL: [http://keycloak.local:8080/auth](http://keycloak.local:8080/auth)
 
-## How it works?
+1. You need to create a realm, go to ```Realm list > Add realm```
+![Create a realm](./docs/screenshots/create-a-realm.png)
 
-Todo
+2. Create clients by going in ```Configure > Clients > Create```
+![Create a client](./docs/screenshots/create-a-client.png)
+
