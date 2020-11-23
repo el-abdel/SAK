@@ -66,8 +66,24 @@ You can visit your Angular application on the following URL: [http://localhost:4
 After building and running your containers, visit keycloak admin console on this URL: [http://keycloak.local:8080/auth](http://keycloak.local:8080/auth)
 
 1. You need to create a realm, go to ```Realm list > Add realm```
-![Create a realm](./docs/screenshots/create-a-realm.png)
+    ![Create a realm](./docs/screenshots/create-a-realm.png)
 
 2. Create clients by going in ```Configure > Clients > Create```
-![Create a client](./docs/screenshots/create-a-client.png)
+    > We need to create two clients one for Authorization and another one for Authentication
 
+    ![Create a client](./docs/screenshots/create-a-client.png)
+
+3. Configure Authorization client
+    > you can configure it by going in ```Configure > Clients > [Your client]```. The authorization client Access type should be **bearer-only**.
+    
+    ![Config Authorization client](./docs/screenshots/config-autorization-client.png)
+
+4. todo: continue on KC conf.
+
+#### Securing API
+
+For this part you can refer to my package [ABELkeycloakBearerOnlyAdapterBundle](https://github.com/el-abdel/ABELkeycloakBearerOnlyAdapterBundle), where you'll find a step by step documentation on how to secure your Symfony App using Keycloak.
+
+#### Securing Angular App
+
+To implement authentication in Angular application we are using: [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc), you can visit the package repository for more information.
