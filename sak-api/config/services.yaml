@@ -5,9 +5,6 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    keycloak:
-        issuer: '%env(OAUTH_KEYCLOAK_ISSUER)%'
-        realm: '%env(OAUTH_KEYCLOAK_REALM)%'
 
 services:
     # default configuration for services in *this* file

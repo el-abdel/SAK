@@ -1,6 +1,6 @@
 api_platform:
-    title: 'SPT API'
-    description: 'Suivi de la permanence téléphonique - API'
+    title: 'SAK API'
+    description: 'APP SAK API'
     version: '1.0.0'
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
@@ -10,14 +10,5 @@ api_platform:
         versions: [3]
         api_keys:
             apiKey:
-               name: Authorization
-               type: header
-    formats:
-        jsonld:   ['application/ld+json']
-        jsonhal:  ['application/hal+json']
-        jsonapi:  ['application/vnd.api+json']
-        json:     ['application/json']
-        xml:      ['application/xml', 'text/xml']
-        yaml:     ['application/x-yaml']
-        csv:      ['text/csv']
-        html:     ['text/html']
+                name: Authorization
+                type: header
