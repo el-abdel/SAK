@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "spt-web": {
+    "sak-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/spt-web",
+            "outputPath": "dist/sak-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "spt-web:build"
+            "browserTarget": "sak-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "spt-web:build:production"
+              "browserTarget": "sak-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "spt-web:build"
+            "browserTarget": "sak-web:build"
           }
         },
         "test": {
@@ -117,16 +117,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "spt-web:serve"
+            "devServerTarget": "sak-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "spt-web:serve:production"
+              "devServerTarget": "sak-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "spt-web"
+  "defaultProject": "sak-web"
 }
