@@ -68,17 +68,48 @@ After building and running your containers, visit keycloak admin console on this
 1. You need to create a realm, go to ```Realm list > Add realm```
     ![Create a realm](./docs/screenshots/create-a-realm.png)
 
-2. Create clients by going in ```Configure > Clients > Create```
+2. Create clients by going in ```Main menu > Clients > Create```
     > We need to create two clients one for Authorization and another one for Authentication
 
     ![Create a client](./docs/screenshots/create-a-client.png)
 
-3. Configure Authorization client
-    > you can configure it by going in ```Configure > Clients > [Your client]```. The authorization client Access type should be **bearer-only**.
+3. Configure authentication client
+    > you can configure the client by going in ```Main menu > Clients > [Your client]```. The authentication client Access type is **confidential**.
+
+    ![Config Authentication client](./docs/screenshots/config-authentication-client.png)
+
+    > You can find the client secret in **Credentials** tab
+
+4. Configure authorization client
+    > you can configure the client by going in ```Main menu > Clients > [Your client]```. The authorization client Access type must be **bearer-only**.
     
     ![Config Authorization client](./docs/screenshots/config-autorization-client.png)
 
-4. todo: continue on KC conf.
+    1. Add role to authorization client:
+
+        > In keycloak, roles are an abstraction of permissions for our application (used in security.yaml). In our case we need to define a role named **ROLE_API**. <br>
+        >You can configure it in ```Main menu > Clients > [Your client] > Roles```
+
+        ![Create Role](./docs/screenshots/create-a-role.png)
+
+5. Create a user
+    1. From the menu, click **Users** to open the user list page.
+
+    2. On the right side of the empty user list, click **Add User** to open the Add user page.
+
+        ![Create user](./docs/screenshots/add-user.png)
+
+    3. Click the Credentials tab to set a temporary password for the new user. then set a new password for this user.
+
+        > This password is temporary and the user will be required to change it at the first login. If you prefer to create a password that is persistent, flip the **Temporary** switch to **Off** and click **Set Password**.
+
+6. Assign a role to a use
+    
+    > To add role, go to ```Main menu > Users > View all users > [Some User] > Role Mappings```.
+
+    1. In the **Client Roles** dropdown, select your authorization client that contains our role(s).
+    2. Select Role **ROLE_API** in **Available Roles** list, then click **Add selected** to assign role to the user.
+
 
 #### Securing API
 
