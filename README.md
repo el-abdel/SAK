@@ -117,4 +117,4 @@ For this part you can refer to my package [ABELkeycloakBearerOnlyAdapterBundle](
 
 #### Securing Angular App
 
-To implement authentication in Angular application we are using: [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc), you can visit the package repository for more information.
+To implement authentication in Angular application we are using: [keycloak-angular](https://github.com/mauriciovigolo/keycloak-angular), you can visit the package repository for more information.
