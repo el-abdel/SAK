@@ -1,5 +1,5 @@
-FROM  php:7.3-apache
-MAINTAINER Abdellah Elmakhroubi
+FROM  php:7.4-apache
+LABEL maintainer="Abdellah Elmakhroubi"
 LABEL name="apache2-php7"
 LABEL version="1.0"
 
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y mariadb-client libldap2-dev libzip-dev 
     a2enmod ssl && \
     rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir --with-freetype-dir && \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd
 
 RUN docker-php-ext-configure opcache --enable-opcache &&\
