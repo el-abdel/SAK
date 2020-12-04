@@ -24,7 +24,7 @@ $ cd sak-docker
 Then run this command to build your environment.
 
 ```
-$ docker-compose -f docker-projects/docker-compose/sak.yml up
+$ docker-compose -f docker-compose/sak.yml up
 ```
 
 > Do not forget to add virtual hosts in your /etc/hosts file.
@@ -34,7 +34,7 @@ $ docker-compose -f docker-projects/docker-compose/sak.yml up
 For better performance the **vendor** folder is not shared in our volumes, so we need to install our dependencies in the container. To do so run:
 
 ```
-$ docker-compose -f docker-projects/docker-compose/sak.yml run --rm composer install --ignore-platform-reqs
+$ docker-compose -f docker-compose/sak.yml run --rm composer install --ignore-platform-reqs
 ```
 
 You can visit your Symfony application on the following URL: [http://sak-api.local/api](http://sak-api.local/api) 
