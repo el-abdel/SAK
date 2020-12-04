@@ -1,1 +1,46 @@
-<p>Call's list works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="mr-2">tune</mat-icon> Example List
+        </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+
+        <div class="loading-shade" *ngIf="isLoadingResults">
+          <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        </div>
+
+        <div> <!--*ngIf="!loading"-->
+          <mat-form-field class="mt-4 col-md-4">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="fieldOne">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Field One </th>
+                <td mat-cell *matCellDef="let row"> {{row.fieldOne}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="fieldTwo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Field Two </th>
+                <td mat-cell *matCellDef="let row"> {{row.fieldTwo}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

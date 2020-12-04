@@ -1,3 +1,7 @@
+body {
+	background-color: #ffffff;
+}
+
 #kc-locale {
     display: none !important;
 }
@@ -10,12 +14,13 @@
     width: 100%;
 }
 
-#kc-logo-wrapper {
+#kc-header-wrapper {
     background-image: url(../img/logo.png);
     background-repeat: no-repeat;
-    height: 196px;
-    width: 335px;
+    height: 93px;
+    width: 218px;
     margin: 62px auto 0;
+    text-indent: -9999px;
 }
 
 div.kc-logo-text {

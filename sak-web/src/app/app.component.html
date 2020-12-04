@@ -1,7 +1,9 @@
 <div class="container">
   <mat-toolbar color="primary">
-    <button mat-icon-button (click)="doLogout()"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">SAK App</h1>
+    <button mat-icon-button><mat-icon>menu</mat-icon></button>
+    <h1>SAK App</h1>
+    <span class="example-spacer"></span>
+    <button mat-icon-button (click)="doLogout()" matTooltip="Log Out"><mat-icon>logout</mat-icon></button>
   </mat-toolbar>
 
   <router-outlet></router-outlet>
