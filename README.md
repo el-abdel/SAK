@@ -2,6 +2,9 @@
 
 Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak, running on Docker containers using docker-compose tool.
 
+
+![SAK Architecture](./docs/screenshots/sak-architecture.png)
+
 ## Requirement
 
 - Docker
