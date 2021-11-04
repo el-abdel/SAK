@@ -54,7 +54,7 @@ Install app. dependencies:
 
 ```
 $ cd sak-web
-$ npm install -g @angular/cli
+$ npm install
 ```
 And finally serve you angular application locally using:
 
