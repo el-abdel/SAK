@@ -34,10 +34,11 @@ export class CreateComponent implements OnInit {
     this.exampleService.createRessource('/api/examples', data).subscribe(
       () => {
         this.form.reset();
-        this.router.navigate(['/liste']);
-        this.snackBar.open('successfully created resource', 'Close', {
-          duration: 3000,
-        });
+        this.router.navigate(['/liste']).then(
+          () => this.snackBar.open('successfully created resource', 'Close', {
+            duration: 3000,
+          })
+        );
       }
     );
   }

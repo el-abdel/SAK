@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ExampleService} from '../service/example.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {Example} from "../../core/entities/example";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ExampleService } from '../service/example.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Example } from '../../core/entities/example';
 
 @Component({
   selector: 'app-update',

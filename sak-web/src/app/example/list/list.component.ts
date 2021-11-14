@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ExampleService } from '../service/example.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   templateUrl: './list.component.html',
@@ -12,13 +13,14 @@ import { ExampleService } from '../service/example.service';
 export class ListComponent implements OnInit {
 
   isLoadingResults = true;
-  displayedColumns: string[] = ['fieldOne', 'fieldTwo'];
+  displayedColumns: string[] = ['fieldOne', 'fieldTwo', 'action'];
   filterValue = '';
   dataSource: MatTableDataSource<Example>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private exampleService: ExampleService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +45,17 @@ export class ListComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.isLoadingResults = false;
     });
+  }
+
+  deleteResource(id: number): void {
+    this.exampleService.deleteRessource('/api/examples', id).subscribe(
+      () => {
+        this.loadData();
+        this.snackBar.open('successfully deleted resource', 'Close', {
+          duration: 3000,
+        });
+      }
+    );
   }
 
 }
