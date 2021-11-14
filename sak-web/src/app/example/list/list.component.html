@@ -17,6 +17,11 @@
           <mat-form-field class="mt-4 col-md-4">
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
           </mat-form-field>
+
+          <div class="mt-4 float-right">
+            <button mat-raised-button class="mr-1" color="accent" routerLink="/create"><mat-icon class="mr-2">add</mat-icon> Add Resource</button>
+          </div>
+
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort>
 
@@ -30,6 +35,18 @@
               <ng-container matColumnDef="fieldTwo">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Field Two </th>
                 <td mat-cell *matCellDef="let row"> {{row.fieldTwo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row; index as i">
+                  <button mat-icon-button color="warn" class="float-right">
+                    <mat-icon aria-label="Delete" matTooltip="Delete" (click)="deleteResource(row.id)">delete</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" class="float-right">
+                    <mat-icon aria-label="Update" matTooltip="Update" [routerLink]="['/update', row.id]">edit</mat-icon>
+                  </button>
+                </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

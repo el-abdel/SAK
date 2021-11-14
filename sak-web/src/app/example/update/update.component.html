@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="mr-2">edit</mat-icon> Update resource
+        </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <form class="mt-5 ml-4" novalidate (ngSubmit)="saveData()" [formGroup]="form">
+          <div class="form-group">
+            <div class="row mt-2">
+              <mat-form-field class="col-md-8">
+                <input matInput placeholder="field One" formControlName="fieldOne" [required]="true">
+                <mat-error *ngIf="form.get('fieldOne').invalid">Complete this field</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row mt-2">
+              <mat-form-field class="col-md-8">
+                <input matInput placeholder="field Txo" formControlName="fieldTwo" [required]="true">
+                <mat-error *ngIf="form.get('fieldTwo').invalid">Complete this field</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row pt-2">
+            <button class="mr-3" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+              <mat-icon class="mr-1">save</mat-icon>
+              Save
+            </button>
+            <button mat-raised-button class="btn-mat-warn text-white" color="warn" type="reset" (click)="form.reset()">
+              <mat-icon class="mr-1">cancel</mat-icon>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
