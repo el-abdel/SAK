@@ -77,6 +77,7 @@ And finally serve you angular application locally using:
 ```
 $ ng serve
 ```
+> Do not forget to verify Keycloak and Api configuration under `sak-web/src/environments/environment.ts`.
 
 You can visit your Angular application on the following URL: [http://localhost:4200](http://localhost:4200)
 
