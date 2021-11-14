@@ -39,6 +39,22 @@ For better performance the **vendor** folder is not shared in our volumes, so we
 ```
 $ docker-compose -f docker-compose/sak.yml run --rm composer install --ignore-platform-reqs
 ```
+Create and init database:
+
+1- connect to app container:
+
+```
+$ docker exec -it sak-api bash
+```
+
+2- create database (in the container run the following commandes)
+
+```
+$ cd sak-api
+$ php bin/console doctrine:database:create
+$ php bin/console doctrine:schema:update -f
+```
+
 
 You can visit your Symfony application on the following URL: [http://sak-api.local/api](http://sak-api.local/api) 
 
