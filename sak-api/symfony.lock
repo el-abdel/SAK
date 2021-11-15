@@ -1,6 +1,6 @@
 {
     "abel/keycloak-bearer-only-adapter-bundle": {
-        "version": "v1.1.0"
+        "version": "v1.2.0"
     },
     "api-platform/core": {
         "version": "2.5",
