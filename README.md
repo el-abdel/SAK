@@ -133,7 +133,7 @@ After building and running your containers, visit keycloak admin console on this
 
 #### Securing API
 
-For this part you can refer to my package [ABELkeycloakBearerOnlyAdapterBundle](https://github.com/el-abdel/ABELkeycloakBearerOnlyAdapterBundle/tree/v1.1.0), where you'll find a step by step documentation on how to secure your Symfony App using Keycloak.
+For this part you can refer to my package [ABELkeycloakBearerOnlyAdapterBundle](https://github.com/el-abdel/ABELkeycloakBearerOnlyAdapterBundle), where you'll find a step by step documentation on how to secure your Symfony App using Keycloak.
 
 #### Securing Angular App
 
