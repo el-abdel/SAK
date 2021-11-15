@@ -4,30 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "097ff5f9b756364061e0a67bc235bc1c",
+    "content-hash": "1979d4bc0d9e88283e4d52f7c975874e",
     "packages": [
         {
             "name": "abel/keycloak-bearer-only-adapter-bundle",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/el-abdel/ABELkeycloakBearerOnlyAdapterBundle.git",
-                "reference": "e0bd4cc329dd40bec73593fa1f6481027b47e91a"
+                "reference": "c06b9ae2f067b9fb6083dbbdc5176d3dff2e894e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/el-abdel/ABELkeycloakBearerOnlyAdapterBundle/zipball/e0bd4cc329dd40bec73593fa1f6481027b47e91a",
-                "reference": "e0bd4cc329dd40bec73593fa1f6481027b47e91a",
+                "url": "https://api.github.com/repos/el-abdel/ABELkeycloakBearerOnlyAdapterBundle/zipball/c06b9ae2f067b9fb6083dbbdc5176d3dff2e894e",
+                "reference": "c06b9ae2f067b9fb6083dbbdc5176d3dff2e894e",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.3",
-                "php": "^7.2.5",
-                "symfony/config": "^5.0",
-                "symfony/dependency-injection": "^5.0",
-                "symfony/http-kernel": "^5.0",
-                "symfony/security-bundle": "^5.0"
+                "php": ">=7.2.5",
+                "symfony/config": "^5.3",
+                "symfony/dependency-injection": "^5.3",
+                "symfony/http-kernel": "^5.3",
+                "symfony/security-bundle": "^5.3"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -51,9 +51,9 @@
             "description": "Keycloak security adapter for bearer only clients",
             "support": {
                 "issues": "https://github.com/el-abdel/ABELkeycloakBearerOnlyAdapterBundle/issues",
-                "source": "https://github.com/el-abdel/ABELkeycloakBearerOnlyAdapterBundle/tree/v1.1.0"
+                "source": "https://github.com/el-abdel/ABELkeycloakBearerOnlyAdapterBundle/tree/v1.2.0"
             },
-            "time": "2020-12-11T17:41:00+00:00"
+            "time": "2021-11-12T08:44:20+00:00"
         },
         {
             "name": "api-platform/core",
@@ -7358,5 +7358,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
