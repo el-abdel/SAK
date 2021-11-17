@@ -26,22 +26,6 @@ services:
       - apache-sak-api
     working_dir: /var/www/html/sak-api
 
-  apache-sak-web:
-    image: httpd:2.4
-    container_name: sak-web
-    environment:
-      - VIRTUAL_HOST=sak-web.local
-    volumes:
-      - ../../sak-web/dist:/var/www/html
-      - ../etc/apache2/sites-enabled/sak-web-httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ../etc/apache2/sites-enabled/sak-web.local.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
-      - ../log/apache2/sak-web.local:/var/log/apache2/sak-web.local
-      - ../log/sak-web.local:/tmp/log
-    links:
-      - apache-sak-api
-      - keycloak
-    network_mode: "bridge"
-
   database-sak:
     image: mysql:5.7
     container_name: sak-database
@@ -86,16 +70,6 @@ services:
       - PMA_PASSWORD=root
     links:
       - database-sak:db
-    network_mode: "bridge"
-
-  mailhog:
-    image: mailhog/mailhog
-    container_name: mailhog
-    environment:
-      - VIRTUAL_HOST=mailhog.local
-    ports: 
-      - 1025:1025 # smtp server
-      - 8025:8025 # web ui
     network_mode: "bridge"
 
   nginx-proxy:

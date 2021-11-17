@@ -30,7 +30,7 @@ Then run this command to build your environment.
 $ docker-compose -f docker-compose/sak.yml up
 ```
 
-> Do not forget to add virtual hosts in your /etc/hosts file.
+> Do not forget to add virtual hosts (keycloak.local, sak-api.local, phpmyadmin.local) in your /etc/hosts file.
 
 #### Configuring Symfony App
 
