@@ -5,6 +5,15 @@ Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak,
 
 ![SAK Architecture](./docs/screenshots/sak-architecture.png)
 
+## What's in the box ?
+- Angular skeleton application following best practices
+- API with symfony and Api-plateform
+    - REST
+    - GraphQL (comming soon)
+- Identity manager (Keycloak)
+- OIDC authentication (using keycloak)
+- API Authentication/Authorization (Bearer authentication with acces token using Keycloak)
+
 ## Requirement
 
 - Docker
