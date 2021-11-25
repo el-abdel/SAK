@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "sak-web"
+  "defaultProject": "sak-web",
+  "cli": {
+    "analytics": false
+  }
 }
