@@ -7,7 +7,9 @@ use App\Repository\ExampleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_API')"}
+ * )
  * @ORM\Entity(repositoryClass=ExampleRepository::class)
  */
 class Example

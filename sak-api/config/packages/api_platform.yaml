@@ -12,3 +12,5 @@ api_platform:
             apiKey:
                 name: Authorization
                 type: header
+    graphql:
+        default_ide: graphql-playground
