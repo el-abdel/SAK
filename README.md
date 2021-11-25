@@ -69,7 +69,7 @@ You can visit your Symfony application on the following URL: [http://sak-api.loc
 
 #### Configuring Angular App
 
-Install Angular CLI:
+Install Angular CLI (Optional):
 
 ```
 $ npm install -g @angular/cli
@@ -81,10 +81,14 @@ Install app. dependencies:
 $ cd sak-web
 $ npm install
 ```
-And finally serve you angular application locally using:
+And finally run you angular application locally using:
 
 ```
 $ ng serve
+```
+OR
+```
+$ npm start
 ```
 > Do not forget to verify Keycloak and Api configuration under `sak-web/src/environments/environment.ts`.
 
