@@ -1,3 +1,7 @@
 api_graphql_entrypoint:
   path: /graphql
   controller: api_platform.graphql.action.entrypoint
+
+graphql_playground:
+  path: /docs/graphql_playground
+  controller: api_platform.graphql.action.graphql_playground
