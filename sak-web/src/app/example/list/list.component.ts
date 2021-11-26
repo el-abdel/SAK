@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Example } from 'src/app/core/entities/example';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ExampleService } from '../service/example.service';
+// import { ExampleService } from '../service/example.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ExampleEdge, ExampleGraphqlService} from '../service/example.graphql.service';
 
 @Component({
   templateUrl: './list.component.html',
@@ -15,12 +15,13 @@ export class ListComponent implements OnInit {
   isLoadingResults = true;
   displayedColumns: string[] = ['fieldOne', 'fieldTwo', 'action'];
   filterValue = '';
-  dataSource: MatTableDataSource<Example>;
+  dataSource: MatTableDataSource<ExampleEdge>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
-    private exampleService: ExampleService,
-    private snackBar: MatSnackBar,
+    // private exampleService: ExampleService,
+    private exampleGraphqlService: ExampleGraphqlService,
+    // private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -38,24 +39,25 @@ export class ListComponent implements OnInit {
   loadData() {
     console.log('in loading');
     this.isLoadingResults = true;
-    this.exampleService.getRessources('/api/examples').pipe(
-    ).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+    this.exampleGraphqlService.watch()
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+      this.dataSource = new MatTableDataSource(data.examples.edges);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.isLoadingResults = false;
+      this.isLoadingResults = loading;
     });
   }
 
   deleteResource(id: number): void {
-    this.exampleService.deleteRessource('/api/examples', id).subscribe(
+    /*this.exampleService.deleteRessource('/api/examples', id).subscribe(
       () => {
         this.loadData();
         this.snackBar.open('successfully deleted resource', 'Close', {
           duration: 3000,
         });
       }
-    );
+    );*/
   }
 
 }

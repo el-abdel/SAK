@@ -28,23 +28,23 @@
               <!-- Name Column -->
               <ng-container matColumnDef="fieldOne">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Field One </th>
-                <td mat-cell *matCellDef="let row"> {{row.fieldOne}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.node.fieldOne}} </td>
               </ng-container>
 
 
               <ng-container matColumnDef="fieldTwo">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Field Two </th>
-                <td mat-cell *matCellDef="let row"> {{row.fieldTwo}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.node.fieldTwo}} </td>
               </ng-container>
 
               <ng-container matColumnDef="action" stickyEnd>
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let row; index as i">
                   <button mat-icon-button color="warn" class="float-right">
-                    <mat-icon aria-label="Delete" matTooltip="Delete" (click)="deleteResource(row.id)">delete</mat-icon>
+                    <mat-icon aria-label="Delete" matTooltip="Delete" (click)="deleteResource(row.node.id)">delete</mat-icon>
                   </button>
                   <button mat-icon-button color="primary" class="float-right">
-                    <mat-icon aria-label="Update" matTooltip="Update" [routerLink]="['/update', row.id]">edit</mat-icon>
+                    <mat-icon aria-label="Update" matTooltip="Update" [routerLink]="['/update', row.node.id]">edit</mat-icon>
                   </button>
                 </td>
               </ng-container>
