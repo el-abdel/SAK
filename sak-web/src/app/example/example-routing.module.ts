@@ -4,7 +4,7 @@ import { ListComponent } from './list/list.component';
 import { AuthGuard } from '../core/auth.guard';
 import { CreateComponent } from './create/create.component';
 import { UpdateComponent } from './update/update.component';
-import { ExampleResolverService } from './resolver/ExampleResolverService';
+import {ExampleResolverService} from './resolver/ExampleResolver.service';
 
 
 const routes: Routes = [

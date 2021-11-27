@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExampleService } from '../service/example.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Example } from '../../core/entities/example';
+import {Node} from '../../core/entities/example';
+import {Apollo, gql} from 'apollo-angular';
 
 @Component({
   selector: 'app-update',
@@ -13,11 +13,11 @@ import { Example } from '../../core/entities/example';
 })
 export class UpdateComponent implements OnInit {
 
-  data: Example;
+  data: Node;
   form: FormGroup;
   private routerSub: Subscription;
   constructor(private fb: FormBuilder,
-              private exampleService: ExampleService,
+              private apollo: Apollo,
               private snackBar: MatSnackBar,
               private route: ActivatedRoute,
               private router: Router
@@ -42,12 +42,28 @@ export class UpdateComponent implements OnInit {
   }
 
   saveData(): void {
-    console.log('save');
-    const data = {...this.data, ...{
+    const UPDATE_EXAMPLE = gql`
+    mutation updateExample($input: updateExampleInput!) {
+      updateExample(input: $input) {
+        example {
+          id
+          fieldOne
+          fieldTwo
+        }
+      }
+    }
+    `;
+    const data = {
+      id: this.data.id,
       fieldOne: this.form.get('fieldOne').value,
       fieldTwo: this.form.get('fieldTwo').value
-    }};
-    this.exampleService.editRessource('/api/examples', data).subscribe(
+    };
+    this.apollo.mutate({
+      mutation: UPDATE_EXAMPLE,
+      variables: {
+        input: data
+      }
+    }).subscribe(
       () => {
         this.form.reset();
         this.router.navigate(['/liste']).then(
@@ -55,6 +71,9 @@ export class UpdateComponent implements OnInit {
             duration: 3000,
           })
         );
+      },
+      (error) => {
+        console.error('there was an error sending the query', error);
       }
     );
   }
