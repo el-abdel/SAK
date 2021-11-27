@@ -21,7 +21,7 @@ services:
 
   composer:
     image: composer:latest
-    container_name: composer
+    container_name: sak-composer
     volumes_from:
       - apache-sak-api
     working_dir: /var/www/html/sak-api
@@ -42,7 +42,7 @@ services:
 
   keycloak:
     image: jboss/keycloak
-    container_name: keycloak
+    container_name: sak-keycloak
     environment:
       - DB_VENDOR=MYSQL
       - DB_ADDR=dbase
@@ -62,7 +62,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: sak-phpmyadmin
     environment:
       - VIRTUAL_HOST=phpmyadmin.local
       - PMA_HOST=db
@@ -74,7 +74,7 @@ services:
 
   nginx-proxy:
     image: jwilder/nginx-proxy
-    container_name: nginx-proxy
+    container_name: sak-nginx-proxy
     ports:
       - "80:80"
     network_mode: "bridge"
