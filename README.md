@@ -9,7 +9,7 @@ Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak,
 - Angular skeleton application following best practices
 - API with symfony and Api-plateform
     - REST
-    - GraphQL (See branche [graphql](https://github.com/el-abdel/SAK/tree/graphql))
+    - GraphQL (switch to branche [graphql](https://github.com/el-abdel/SAK/tree/graphql))
 - Identity manager (Keycloak)
 - OIDC authentication (using keycloak)
 - API Authentication/Authorization (Bearer authentication with acces token using Keycloak)
