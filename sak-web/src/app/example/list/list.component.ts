@@ -97,6 +97,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.querySubscription.unsubscribe();
   }
 
 }
