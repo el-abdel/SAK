@@ -1,17 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-// import { ExampleService } from '../service/example.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ExampleEdge, ExampleGraphqlService} from '../service/example.graphql.service';
+import {Apollo, gql, QueryRef} from 'apollo-angular';
+import {Subscription} from 'rxjs';
+import {ExampleEdge} from '../../core/entities/example';
 
 @Component({
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
 
+  dataQuery: QueryRef<any>;
+  private querySubscription: Subscription;
   isLoadingResults = true;
   displayedColumns: string[] = ['fieldOne', 'fieldTwo', 'action'];
   filterValue = '';
@@ -19,13 +22,37 @@ export class ListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
-    // private exampleService: ExampleService,
-    private exampleGraphqlService: ExampleGraphqlService,
-    // private snackBar: MatSnackBar,
+    private apollo: Apollo,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
-    this.loadData();
+    const LIST_EXAMPLE = gql`
+    query {
+      examples {
+        edges {
+          node {
+            id,
+            fieldOne,
+            fieldTwo
+          }
+        },
+        totalCount
+      }
+    }
+  `;
+    this.dataQuery = this.apollo.watchQuery<any>({
+      query: LIST_EXAMPLE,
+      pollInterval: 500,
+    });
+    this.querySubscription = this.dataQuery
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        this.dataSource = new MatTableDataSource(data.examples.edges);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.isLoadingResults = loading;
+      });
   }
 
   applyFilter(filterValue: string) {
@@ -36,28 +63,40 @@ export class ListComponent implements OnInit {
     }
   }
 
-  loadData() {
-    console.log('in loading');
-    this.isLoadingResults = true;
-    this.exampleGraphqlService.watch()
-      .valueChanges
-      .subscribe(({ data, loading }) => {
-      this.dataSource = new MatTableDataSource(data.examples.edges);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.isLoadingResults = loading;
-    });
+  refresh() {
+    this.dataQuery.refetch();
   }
 
   deleteResource(id: number): void {
-    /*this.exampleService.deleteRessource('/api/examples', id).subscribe(
+    const DELETE_EXAMPLE = gql`
+    mutation deleteExample($input: deleteExampleInput!) {
+      deleteExample(input: $input) {
+        example{
+          id
+        }
+      }
+    }
+    `;
+    this.apollo.mutate({
+      mutation: DELETE_EXAMPLE,
+      variables: {
+        input: {id}
+      }
+    }).subscribe(
       () => {
-        this.loadData();
+        this.refresh();
         this.snackBar.open('successfully deleted resource', 'Close', {
           duration: 3000,
         });
+      },
+      (error) => {
+        console.error('there was an error sending the query', error);
       }
-    );*/
+    );
+
+  }
+
+  ngOnDestroy(): void {
   }
 
 }
