@@ -10,9 +10,8 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
         await keycloak.init({
           config: keycloakConfig,
           initOptions: {
-            onLoad: 'login-required',
-            flow: 'implicit',
-            checkLoginIframe: false
+            pkceMethod: 'S256',
+            onLoad: 'login-required'
           },
           bearerExcludedUrls: []
         });
