@@ -9,10 +9,10 @@ Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak,
 - Angular skeleton application following best practices
 - API with symfony and Api-plateform
     - REST
-    - GraphQL (switch to branche [graphql](https://github.com/el-abdel/SAK/tree/graphql))
+    - GraphQL (switch to branch [graphql](https://github.com/el-abdel/SAK/tree/graphql))
 - Identity manager (Keycloak)
-- OIDC authentication (using keycloak)
-- API Authentication/Authorization (Bearer authentication with acces token using Keycloak)
+- OIDC authentication (Code Flow + PKCE)
+- API Authentication/Authorization (Bearer authentication with access token using Keycloak)
 
 ## Requirement
 
@@ -56,7 +56,7 @@ Create and init database:
 $ docker exec -it sak-api bash
 ```
 
-2- create database (in the container run the following commandes)
+2- create the database (in the container run the following commands)
 
 ```
 $ cd sak-api
@@ -107,18 +107,18 @@ After building and running your containers, visit keycloak admin console on this
     ![Create a client](./docs/screenshots/create-a-client.png)
 
 3. Configure authentication client
-    > you can configure the client by going in ```Main menu > Clients > [Your client]```. The authentication client Access type is **confidential**.
+    > you can configure the client by going in ```Main menu > Clients > [Your client]```. The authentication client Access type is **public**.
 
     ![Config Authentication client](./docs/screenshots/config-authentication-client.png)
-
-    > You can find the client secret in **Credentials** tab
 
 4. Configure authorization client
     > you can configure the client by going in ```Main menu > Clients > [Your client]```. The authorization client Access type must be **bearer-only**.
     
     ![Config Authorization client](./docs/screenshots/config-autorization-client.png)
+    
+    > You can find the client secret in **Credentials** tab
 
-    1. Add role to authorization client:
+    1. Add a role to authorization client:
 
         > In keycloak, roles are an abstraction of permissions for our application (used in security.yaml). In our case we need to define a role named **ROLE_API**. <br>
         >You can configure it in ```Main menu > Clients > [Your client] > Roles```
@@ -138,7 +138,7 @@ After building and running your containers, visit keycloak admin console on this
 
 6. Assign a role to a use
     
-    > To add role, go to ```Main menu > Users > View all users > [Some User] > Role Mappings```.
+    > To add a role, go to ```Main menu > Users > View all users > [Some User] > Role Mappings```.
 
     1. In the **Client Roles** dropdown, select your authorization client that contains our role(s).
     2. Select Role **ROLE_API** in **Available Roles** list, then click **Add selected** to assign role to the user.

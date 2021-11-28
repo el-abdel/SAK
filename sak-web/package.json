@@ -22,8 +22,8 @@
     "@angular/platform-browser-dynamic": "~10.2.5",
     "@angular/router": "~10.2.5",
     "bootstrap-material-design": "^4.1.2",
-    "keycloak-angular": "^7.2.0",
-    "keycloak-js": "^9.0.0",
+    "keycloak-angular": "^8.4.0",
+    "keycloak-js": "^15.0.2",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
