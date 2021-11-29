@@ -1,4 +1,4 @@
-FROM  php:7.4-apache
+FROM  php:8.0.13-apache
 LABEL maintainer="Abdellah Elmakhroubi"
 LABEL name="apache2-php7"
 LABEL version="1.0"
