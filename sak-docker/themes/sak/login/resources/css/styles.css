@@ -61,3 +61,23 @@ div.kc-logo-text span {
 	margin-left: 15px !important;
     margin-right: 15px !important;
 }
+
+.login-pf-header #kc-username {
+    margin: 14px !important;
+}
+
+#kc-attempted-username {
+    font-size: 20px;
+}
+
+#reset-login {
+    float: right;
+}
+
+#kc-otp-login-form .form-group label {
+    padding-left: 13px;
+}
+
+#input-error-otp-code {
+    color: #cb3434;
+}

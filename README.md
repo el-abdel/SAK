@@ -11,7 +11,8 @@ Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak,
     - REST
     - GraphQL (switch to branch [graphql](https://github.com/el-abdel/SAK/tree/graphql))
 - Identity manager (Keycloak)
-- OIDC authentication (Code Flow + PKCE)
+- OIDC Authentication (Code Flow + PKCE)
+- Two-Factor Authentication (Password + OTP)
 - API Authentication/Authorization (Bearer authentication with access token using Keycloak)
 
 ## Requirement
@@ -50,19 +51,17 @@ $ docker-compose -f docker-compose/sak.yml run --rm composer install --ignore-pl
 ```
 Create and init database:
 
-1- connect to app container:
+1. connect to app container:
+    ```
+    $ docker exec -it sak-api bash
+    ```
 
-```
-$ docker exec -it sak-api bash
-```
-
-2- create the database (in the container run the following commands)
-
-```
-$ cd sak-api
-$ php bin/console doctrine:database:create
-$ php bin/console doctrine:schema:update -f
-```
+2. create the database (in the container run the following commands):
+    ```
+    $ cd sak-api
+    $ php bin/console doctrine:database:create
+    $ php bin/console doctrine:schema:update -f
+    ```
 
 
 You can visit your Symfony application on the following URL: [http://sak-api.local/api](http://sak-api.local/api) 
@@ -101,17 +100,33 @@ After building and running your containers, visit keycloak admin console on this
 1. You need to create a realm, go to ```Realm list > Add realm```
     ![Create a realm](./docs/screenshots/create-a-realm.png)
 
-2. Create clients by going in ```Main menu > Clients > Create```
+2. Enable Two-Factor Authentication
+    1. Enforce new users to configure OTP
+        > Open Keycloak admin page, open `Authentication`, go to the `Required Actions` tab, then Click on the `Default Action` in the Configure OTP row.
+
+        ![Enable Otp](./docs/screenshots/enable-otp.png)
+
+    2. OTP Policy configuration
+        > Open Keycloak admin page, open `Authentication`, go to the `OTP Policy` tab. <br>
+         **Recommended OTP Policy:** <br>
+         Time based OTP Type (TOTP) is considered a more secure. TOTP requires time be synchronized between Keycloak server and an end user device.<br>
+         If the server and the device cannot be synchronized use Counter Based type (HOTP).<br>
+         Configure Look Ahead Window to 3.
+
+        ![Otp Policy](./docs/screenshots/otp-policy.png)
+
+
+3. Create clients by going in ```Main menu > Clients > Create```
     > We need to create two clients one for Authorization and another one for Authentication
 
     ![Create a client](./docs/screenshots/create-a-client.png)
 
-3. Configure authentication client
+4. Configure authentication client
     > you can configure the client by going in ```Main menu > Clients > [Your client]```. The authentication client Access type is **public**.
 
     ![Config Authentication client](./docs/screenshots/config-authentication-client.png)
 
-4. Configure authorization client
+5. Configure authorization client
     > you can configure the client by going in ```Main menu > Clients > [Your client]```. The authorization client Access type must be **bearer-only**.
     
     ![Config Authorization client](./docs/screenshots/config-autorization-client.png)
@@ -121,11 +136,11 @@ After building and running your containers, visit keycloak admin console on this
     1. Add a role to authorization client:
 
         > In keycloak, roles are an abstraction of permissions for our application (used in security.yaml). In our case we need to define a role named **ROLE_API**. <br>
-        >You can configure it in ```Main menu > Clients > [Your client] > Roles```
+          You can configure it in ```Main menu > Clients > [Your client] > Roles```
 
         ![Create Role](./docs/screenshots/create-a-role.png)
 
-5. Create a user
+6. Create a user
     1. From the menu, click **Users** to open the user list page.
 
     2. On the right side of the empty user list, click **Add User** to open the Add user page.
@@ -136,7 +151,7 @@ After building and running your containers, visit keycloak admin console on this
 
         > This password is temporary and the user will be required to change it at the first login. If you prefer to create a password that is persistent, flip the **Temporary** switch to **Off** and click **Set Password**.
 
-6. Assign a role to a use
+7. Assign a role to a use
     
     > To add a role, go to ```Main menu > Users > View all users > [Some User] > Role Mappings```.
 
