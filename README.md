@@ -111,7 +111,8 @@ After building and running your containers, visit keycloak admin console on this
          **Recommended OTP Policy:** <br>
          Time based OTP Type (TOTP) is considered a more secure. TOTP requires time be synchronized between Keycloak server and an end user device.<br>
          If the server and the device cannot be synchronized use Counter Based type (HOTP).<br>
-         Configure Look Ahead Window to 3.
+         Configure Look Ahead Window to 3.<br>    
+         _Check the [keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/index.html#otp-policies) related to OTP Policies for more details._
 
         ![Otp Policy](./docs/screenshots/otp-policy.png)
 
