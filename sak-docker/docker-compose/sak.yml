@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.8'
 
 services:
 
@@ -17,7 +17,6 @@ services:
     links:
       - database-sak
       - keycloak
-    network_mode: "bridge"
 
   composer:
     image: composer:latest
@@ -38,7 +37,6 @@ services:
       - ../data/sak:/var/lib/mysql
     ports:
       - 3306:3306
-    network_mode: "bridge"
 
   keycloak:
     image: jboss/keycloak
@@ -58,7 +56,6 @@ services:
       - database-sak:dbase
     ports:
       - 8080:8080
-    network_mode: "bridge"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -70,14 +67,12 @@ services:
       - PMA_PASSWORD=root
     links:
       - database-sak:db
-    network_mode: "bridge"
 
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: sak-nginx-proxy
-    ports:
-      - "80:80"
-    network_mode: "bridge"
     volumes:
       - ../etc/nginx/uploadsize.conf:/etc/nginx/conf.d/uploadsize.conf
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - "80:80"
