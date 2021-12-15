@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../core/material.module';
+import { MaterialModule } from './material.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [NotFoundComponent],
   imports: [
     CommonModule,
     MaterialModule

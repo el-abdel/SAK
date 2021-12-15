@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListComponent } from './list/list.component';
-import { AuthGuard } from '../core/auth.guard';
-import { CreateComponent } from './create/create.component';
-import { UpdateComponent } from './update/update.component';
-import { ExampleResolverService } from './resolver/ExampleResolver.service';
+import { ListComponent } from './components/list/list.component';
+import { AuthGuard } from '../core/guards/auth.guard';
+import { CreateComponent } from './components/create/create.component';
+import { UpdateComponent } from './components/update/update.component';
+import { ExampleResolverService } from './resolvers/ExampleResolver.service';
 
 
 const routes: Routes = [
