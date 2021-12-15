@@ -41,7 +41,7 @@
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let row; index as i">
                   <button mat-icon-button color="warn" class="float-right">
-                    <mat-icon aria-label="Delete" matTooltip="Delete" (click)="deleteResource(row.id)">delete</mat-icon>
+                    <mat-icon aria-label="Delete" matTooltip="Delete" (click)="deleteResource(row)">delete</mat-icon>
                   </button>
                   <button mat-icon-button color="primary" class="float-right">
                     <mat-icon aria-label="Update" matTooltip="Update" [routerLink]="['/update', row.id]">edit</mat-icon>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExampleService } from '../../services/example.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ExampleFacade } from '../../example.facade';
 
 @Component({
   selector: 'app-create',
@@ -13,7 +13,7 @@ export class CreateComponent implements OnInit {
 
   form: FormGroup;
   constructor(private fb: FormBuilder,
-              private exampleService: ExampleService,
+              private exampleFacade: ExampleFacade,
               private snackBar: MatSnackBar,
               private router: Router
               ) { }
@@ -31,15 +31,12 @@ export class CreateComponent implements OnInit {
       fieldOne: this.form.get('fieldOne').value,
       fieldTwo: this.form.get('fieldTwo').value
     };
-    this.exampleService.createRessource('/api/examples', data).subscribe(
-      () => {
-        this.form.reset();
-        this.router.navigate(['/liste']).then(
-          () => this.snackBar.open('successfully created resource', 'Close', {
-            duration: 3000,
-          })
-        );
-      }
+    this.exampleFacade.createExample(data);
+    this.form.reset();
+    this.router.navigate(['/liste']).then(
+      () => this.snackBar.open('successfully created resource', 'Close', {
+        duration: 3000,
+      })
     );
   }
 

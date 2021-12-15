@@ -3,8 +3,8 @@ import { Example } from 'src/app/example/models/example';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ExampleService } from '../../services/example.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {ExampleFacade} from '../../example.facade';
 
 @Component({
   templateUrl: './list.component.html',
@@ -19,12 +19,26 @@ export class ListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
-    private exampleService: ExampleService,
+    private exampleFacade: ExampleFacade,
     private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
-    this.loadData();
+    this.exampleFacade.isUpdating$().subscribe(
+      isUpdating => this.isLoadingResults = isUpdating,
+      error => console.error(error)
+    );
+
+    this.exampleFacade.getExamples$().subscribe(
+      data => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.isLoadingResults = false;
+      },
+      error => console.error(error)
+    );
+    this.exampleFacade.loadExamples();
   }
 
   applyFilter(filterValue: string) {
@@ -35,27 +49,11 @@ export class ListComponent implements OnInit {
     }
   }
 
-  loadData() {
-    console.log('in loading');
-    this.isLoadingResults = true;
-    this.exampleService.getRessources('/api/examples').pipe(
-    ).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.isLoadingResults = false;
+  deleteResource(example: Example): void {
+    this.exampleFacade.removeExample(example);
+    this.snackBar.open('successfully deleted resource', 'Close', {
+      duration: 3000,
     });
-  }
-
-  deleteResource(id: number): void {
-    this.exampleService.deleteRessource('/api/examples', id).subscribe(
-      () => {
-        this.loadData();
-        this.snackBar.open('successfully deleted resource', 'Close', {
-          duration: 3000,
-        });
-      }
-    );
   }
 
 }
