@@ -6,7 +6,7 @@ Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak,
 ![SAK Architecture](./docs/screenshots/sak-architecture.png)
 
 ## What's in the box ?
-- Angular skeleton application following best practices
+- Angular skeleton application with layered architecture
 - API with symfony and Api-plateform
     - REST
     - GraphQL (switch to branch [graphql](https://github.com/el-abdel/SAK/tree/graphql))
