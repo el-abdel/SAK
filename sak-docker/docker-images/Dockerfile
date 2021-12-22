@@ -1,6 +1,6 @@
 FROM  php:8.0.13-apache
 LABEL maintainer="Abdellah Elmakhroubi"
-LABEL name="apache2-php7"
+LABEL name="apache2-php8"
 LABEL version="1.0"
 
 ENV TZ=Europe/Paris
