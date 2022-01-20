@@ -5,7 +5,7 @@ Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak,
 
 ![SAK Architecture](./docs/screenshots/sak-architecture.png)
 
-## What's in the box ?
+## Features
 - Angular skeleton application following best practices
 - API with symfony and Api-plateform
     - REST
@@ -25,19 +25,19 @@ Skeleton stack (for development purpose) built in Symfony, Angular and Keycloak,
 First, clone this repository:
 
 ```
-$ git clone https://github.com/el-abdel/SAK.git
+git clone https://github.com/el-abdel/SAK.git
 ```
 
 Next got to **sak-docker** folder.
 
 ```
-$ cd sak-docker
+cd sak-docker
 ```
 
 Then run this command to build your environment.
 
 ```
-$ docker-compose -f docker-compose/sak.yml up
+docker-compose -f docker-compose/sak.yml up
 ```
 
 > Do not forget to add virtual hosts (keycloak.local, sak-api.local, phpmyadmin.local) in your /etc/hosts file.
@@ -47,20 +47,20 @@ $ docker-compose -f docker-compose/sak.yml up
 For better performance the **vendor** folder is not shared in our volumes, so we need to install our dependencies in the container. To do so run:
 
 ```
-$ docker-compose -f docker-compose/sak.yml run --rm composer install --ignore-platform-reqs
+docker-compose -f docker-compose/sak.yml run --rm composer install --ignore-platform-reqs
 ```
 Create and init database:
 
 1. connect to app container:
     ```
-    $ docker exec -it sak-api bash
+    docker exec -it sak-api bash
     ```
 
 2. create the database (in the container run the following commands):
     ```
-    $ cd sak-api
-    $ php bin/console doctrine:database:create
-    $ php bin/console doctrine:schema:update -f
+    cd sak-api
+    php bin/console doctrine:database:create
+    php bin/console doctrine:schema:update -f
     ```
 
 
@@ -71,23 +71,23 @@ You can visit your Symfony application on the following URL: [http://sak-api.loc
 Install Angular CLI (Optional):
 
 ```
-$ npm install -g @angular/cli
+npm install -g @angular/cli
 ```
 
 Install app. dependencies:
 
 ```
-$ cd sak-web
-$ npm install
+cd sak-web
+npm install
 ```
 And finally run you angular application locally using:
 
 ```
-$ ng serve
+ng serve
 ```
 OR
 ```
-$ npm start
+npm start
 ```
 > Do not forget to verify Keycloak and Api configuration under `sak-web/src/environments/environment.ts`.
 
