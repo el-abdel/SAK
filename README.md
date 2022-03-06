@@ -137,7 +137,7 @@ After building and running your containers, visit keycloak admin console on this
     1. Add a role to authorization client:
 
         > In keycloak, roles are an abstraction of permissions for our application (used in security.yaml). In our case we need to define a role named **ROLE_API**. <br>
-          You can configure it in Authentication client ```Main menu > Clients > [Your client] > Roles```
+          You can configure it in authorization client ```Main menu > Clients > [Your client] > Roles```
 
         ![Create Role](./docs/screenshots/create-a-role.png)
 
