@@ -37,7 +37,7 @@ export class ExampleFacade{
 
   updateExample(exampleToUpdate: Example){
     this.examplesState.setUpdating(true);
-    this.exampleAPI.editRessource('/api/examples', exampleToUpdate)
+    this.exampleAPI.editRessource('/api/examples', exampleToUpdate.id, exampleToUpdate)
       .subscribe(
         (updatedExample) => this.examplesState.updateExample(updatedExample),
         (error) => console.error(error),
