@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule, APP_INITIALIZER, Optional, SkipSelf } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { initializer } from './app.init';
@@ -22,4 +22,12 @@ import { RouterModule } from '@angular/router';
     }
   ],
 })
-export class CoreModule {}
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error(
+        'Core is already loaded. Import it in the AppModule only'
+      );
+    }
+  }
+}
