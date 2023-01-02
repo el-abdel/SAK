@@ -61,22 +61,6 @@ export class CoreHttpService<R> {
       );
     }
 
-    genericSearchApi(url: string, ...query: string[]): Observable<R> {
-      let serviceUrl = this.baseUrl + url + '?' + query.join('&');
-      if (query.length === 0) {
-        serviceUrl = this.baseUrl + url;
-      }
-      const headers = new HttpHeaders().set('Accept', 'application/ld+json');
-      return this.http.get<R>(serviceUrl, {headers}).pipe(
-        map( data => ({
-          results: data['hydra:member'],
-          count: data['hydra:totalItems'],
-          links: data['hydra:view']
-        })),
-        catchError(this.handleError)
-      );
-    }
-
     protected handleError(err: any) {
       // in a real world app, we may send the server to some remote logging infrastructure
       // instead of just logging it to the console
