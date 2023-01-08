@@ -18,10 +18,12 @@ export class ExampleFacade{
   }
 
   loadExamples(){
+    this.examplesState.setUpdating(true);
     this.exampleAPI.getRessources('/api/examples')
       .subscribe(
         (examples) => this.examplesState.setExamples(examples),
-        (error) => console.error(error)
+        (error) => console.error(error),
+        () => this.examplesState.setUpdating(false)
       );
   }
 
